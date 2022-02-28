@@ -1,0 +1,40 @@
+﻿@model SAP_Project.Models.PresentModels
+@{
+    ViewBag.Title = "GetStudentCredits";
+}
+
+<h2>Students</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Student Name
+        </th>
+        <th>
+            Credits
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Students)
+    {
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.StudentName)
+    </td>
+    <td>
+        @{
+            int sum = 0;
+            foreach (var course in item.StudentCourses)
+            {
+                sum += course.Course.CourseCredits;
+            }
+            @Html.DisplayTextFor(m => sum)
+        }
+      </td>
+
+</tr>
+    }
+</table>
+
